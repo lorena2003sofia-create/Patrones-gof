@@ -1,0 +1,192 @@
+# Documentación Técnica - Patrones GoF
+
+## Tabla de los 23 Patrones GoF
+
+# Documentación Técnica - Patrones GoF
+
+## Tabla de los 23 Patrones GoF
+
+| Nombre Patrón    | Tipo o Categoría | Problema que Resuelve                                                                | Diagrama de Clases                                                                                                  | Casos de Uso del Patrón                                                   | Ventajas                                       | Desventajas                            | Patrones Relacionados       |
+| ---------------- | ---------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------- | --------------------------- |
+| Abstract Factory | Creacional       | Permite crear familias de objetos relacionados sin especificar sus clases concretas. | AbstractFactory define métodos para crear productos. ConcreteFactory implementa la creación de productos concretos. | Interfaces gráficas, sistemas multiplataforma y componentes relacionados. | Mantiene consistencia entre objetos creados.   | Incrementa la complejidad del diseño.  | Factory Method, Builder     |
+| Builder          | Creacional       | Permite construir objetos complejos paso a paso.                                     | Director coordina Builder. Builder construye Product.                                                               | Creación de objetos con múltiples atributos o configuraciones.            | Facilita la construcción de objetos complejos. | Requiere más clases.                   | Prototype, Abstract Factory |
+| Factory Method   | Creacional       | Permite crear objetos sin especificar directamente la clase concreta.                | Creator declara factoryMethod(). ConcreteCreator crea ConcreteProduct.                                              | Creación flexible de objetos según el tipo solicitado.                    | Reduce el acoplamiento.                        | Incrementa la cantidad de clases.      | Abstract Factory, Prototype |
+| Prototype        | Creacional       | Permite crear nuevos objetos clonando instancias existentes.                         | Prototype declara clone(). ConcretePrototype implementa la clonación.                                               | Duplicación de configuraciones y plantillas.                              | Reduce tiempo de creación.                     | Puede complicar la clonación profunda. | Builder                     |
+| Singleton        | Creacional       | Garantiza una única instancia de una clase.                                          | Clase con atributo estático _instance y método de acceso global.                                                    | Configuración global, conexiones y recursos compartidos.                  | Evita duplicidad de instancias.                | Puede dificultar pruebas unitarias.    | Factory Method, Flyweight   |
+| Adapter          | Estructural      | Permite que clases con interfaces incompatibles trabajen juntas. | Adapter implementa Target y utiliza Adaptee para realizar la adaptación. | Integración de sistemas heredados o bibliotecas externas. | Reutiliza código existente. | Agrega una capa adicional al diseño. | Bridge, Facade |
+| Bridge           | Estructural      | Separa una abstracción de su implementación para que ambas puedan evolucionar independientemente. | Abstraction mantiene una referencia a Implementor. ConcreteImplementor proporciona la implementación. | Sistemas con múltiples variantes funcionales. | Reduce el acoplamiento. | Incrementa la complejidad inicial. | Adapter |
+| Composite        | Estructural      | Permite tratar objetos individuales y grupos de objetos de manera uniforme. | Component es implementado por Leaf y Composite. Composite contiene Components. | Estructuras jerárquicas como árboles y menús. | Simplifica el manejo de estructuras complejas. | Puede dificultar restricciones sobre componentes. | Decorator, Iterator |
+| Decorator        | Estructural      | Agrega responsabilidades a un objeto de forma dinámica. | Decorator implementa Component y contiene una referencia a Component. | Agregar funcionalidades adicionales sin modificar la clase original. | Flexible y extensible. | Puede generar muchos objetos pequeños. | Composite, Proxy |
+| Facade           | Estructural      | Proporciona una interfaz simplificada para un conjunto de subsistemas. | Facade coordina las llamadas a múltiples subsistemas. | Simplificación de procesos complejos. | Reduce complejidad para el cliente. | Puede convertirse en un objeto demasiado grande. | Adapter, Singleton |
+| Flyweight        | Estructural      | Reduce el consumo de memoria compartiendo objetos similares. | FlyweightFactory administra instancias Flyweight compartidas. | Sistemas con gran cantidad de objetos repetidos. | Ahorra memoria. | Incrementa la complejidad del diseño. | Singleton |
+| Proxy            | Estructural      | Controla el acceso a otro objeto. | Proxy implementa la misma interfaz que RealSubject y controla el acceso. | Seguridad, caché y acceso remoto. | Mayor control y protección. | Agrega una capa adicional. | Decorator |
+| Chain of Responsibility | Comportamiento | Permite que varios objetos tengan la oportunidad de procesar una solicitud. | Handler mantiene referencia al siguiente Handler. | Validaciones y flujos de aprobación. | Reduce acoplamiento entre emisor y receptor. | Puede ser difícil seguir el flujo. | Command |
+| Command | Comportamiento | Encapsula una solicitud como un objeto. | Invoker ejecuta Command. Command llama a Receiver. | Operaciones deshacer, colas de tareas y acciones CRUD. | Desacopla quien solicita de quien ejecuta. | Incrementa el número de clases. | Memento |
+| Interpreter | Comportamiento | Define una representación para interpretar expresiones de un lenguaje. | Expression define interpret(). ConcreteExpression implementa la lógica. | Procesamiento de reglas y expresiones. | Fácil extensión del lenguaje. | Complejo para gramáticas grandes. | Visitor |
+| Iterator | Comportamiento | Permite recorrer una colección sin exponer su estructura interna. | Iterator recorre Aggregate. | Recorrido de listas, árboles y colecciones. | Simplifica recorridos. | Puede ser innecesario en estructuras simples. | Composite |
+| Mediator | Comportamiento | Centraliza la comunicación entre objetos. | Colleagues interactúan mediante Mediator. | Interfaces gráficas y módulos colaborativos. | Reduce dependencias directas. | El mediador puede volverse complejo. | Observer |
+| Memento | Comportamiento | Permite guardar y restaurar estados anteriores de un objeto. | Originator crea Memento. Caretaker almacena Mementos. | Historial y recuperación de información. | Facilita deshacer cambios. | Consume memoria adicional. | Command |
+| Observer | Comportamiento | Notifica automáticamente cambios a múltiples objetos. | Subject mantiene una lista de Observers. | Sistemas de eventos y notificaciones. | Favorece bajo acoplamiento. | Puede generar muchas notificaciones. | Mediator |
+| State | Comportamiento | Permite modificar el comportamiento según el estado interno. | Context delega comportamiento a State. | Procesos con estados definidos. | Elimina grandes estructuras condicionales. | Requiere más clases. | Strategy |
+| Strategy | Comportamiento | Permite intercambiar algoritmos de forma dinámica. | Context utiliza una referencia a Strategy. | Métodos de cálculo, ordenamiento o validación. | Facilita la sustitución de algoritmos. | Incrementa el número de objetos. | State, Template Method |
+| Template Method | Comportamiento | Define la estructura general de un algoritmo dejando algunos pasos a las subclases. | AbstractClass define templateMethod(). Subclases implementan pasos específicos. | Procesos con estructura fija y variaciones internas. | Reutilización de código. | Dependencia de herencia. | Strategy |
+| Visitor | Comportamiento | Permite agregar operaciones a objetos sin modificar sus clases. | Visitor visita Elements mediante accept(). | Reportes, análisis y procesamiento de estructuras complejas. | Facilita agregar nuevas operaciones. | Difícil agregar nuevos elementos. | Composite |
+
+
+# Patrones Implementados 
+
+## 1. Builder - Construcción de Agentes
+
+### Problema
+
+El sistema requiere crear agentes con diferentes configuraciones, como canal de atención e identificación, evitando constructores extensos y difíciles de mantener.
+
+### Solución
+
+AgentBuilder permite construir agentes paso a paso, configurando únicamente los atributos necesarios antes de generar el objeto final.
+
+### Clases
+
+Agent — representa un agente del sistema de Call Center.
+
+AgentBuilder — permite construir objetos Agent de forma gradual mediante métodos de configuración.
+
+### Ejemplo
+
+agente = AgentBuilder().set_channel("CHAT").build()
+
+---
+
+## 2. Factory Method - Creación de Agentes
+
+### Problema
+
+El sistema debe crear agentes para distintos canales de atención sin que el usuario conozca la clase concreta que será utilizada.
+
+### Solución
+
+AgentFactory centraliza la creación de agentes y devuelve el tipo adecuado según el canal solicitado.
+
+### Clases
+
+AgentFactory — responsable de crear agentes según el canal seleccionado.
+
+ChatAgent — agente especializado en atención por chat.
+
+PhoneAgent — agente especializado en atención telefónica.
+
+EmailAgent — agente especializado en atención por correo electrónico.
+
+### Ejemplo
+
+agente = AgentFactory.create_agent("CHAT")
+
+---
+
+## 3. Singleton - Conexión Única a Datos
+
+### Problema
+
+Los diferentes módulos del sistema necesitan acceder a la misma conexión de datos sin crear instancias duplicadas.
+
+### Solución
+
+DatabaseConnection implementa el patrón Singleton garantizando que exista una única instancia compartida durante toda la ejecución del sistema.
+
+### Clases
+
+DatabaseConnection — administra una única conexión utilizada por los diferentes módulos del sistema.
+
+### Ejemplo
+
+conexion1 = DatabaseConnection()
+
+conexion2 = DatabaseConnection()
+
+assert conexion1 is conexion2
+
+---
+
+## 4. Decorator - Información de Desempeño
+
+### Problema
+
+Se requiere agregar información adicional relacionada con el desempeño de los agentes sin modificar la estructura original de la clase.
+
+### Solución
+
+PerformanceDecorator envuelve un agente y agrega información complementaria sobre métricas e indicadores de desempeño.
+
+### Clases
+
+Agent — componente base que representa un agente.
+
+PerformanceDecorator — decorador que añade información de desempeño al agente.
+
+### Ejemplo
+
+agente = PerformanceDecorator(agent)
+
+---
+
+## 5. Strategy - Cálculo de Indicadores KPI
+
+### Problema
+
+El sistema necesita calcular diferentes indicadores de desempeño para los agentes del Call Center utilizando distintos métodos de cálculo.
+
+### Solución
+
+Se implementaron estrategias independientes para calcular métricas como AHT y ACW, permitiendo utilizar diferentes algoritmos sin modificar el resto del sistema.
+
+### Clases
+
+AHTStrategy — estrategia utilizada para calcular el indicador Average Handle Time.
+
+ACWStrategy — estrategia utilizada para calcular el indicador After Call Work.
+
+### Ejemplo
+
+resultado = AHTStrategy().calculate()
+
+---
+
+## 6. Facade - Gestión Centralizada
+
+### Problema
+
+El usuario necesita acceder a diferentes funcionalidades relacionadas con la gestión de agentes mediante una interfaz sencilla.
+
+### Solución
+
+CallCenterFacade centraliza las operaciones principales del sistema y simplifica la interacción con los diferentes módulos.
+
+### Clases
+
+CallCenterFacade — proporciona una interfaz única para las funcionalidades más utilizadas del sistema.
+
+### Ejemplo
+
+facade = CallCenterFacade()
+
+---
+
+## 7. Command - Operaciones sobre Agentes
+
+### Problema
+
+Las acciones relacionadas con los agentes deben ejecutarse de forma organizada y desacoplada.
+
+### Solución
+
+AgentCommand encapsula las operaciones que pueden realizarse sobre los agentes, permitiendo ejecutarlas de manera independiente.
+
+### Clases
+
+AgentCommand — encapsula acciones relacionadas con la gestión de agentes.
+
+### Ejemplo
+
+command = AgentCommand()
+
+command.execute()
